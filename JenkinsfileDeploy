@@ -36,6 +36,9 @@ pipeline {
         sh '''
           PACKAGE_ID=$(cat PID.txt)
           sfdx force:package:install --package ${PACKAGE_ID} --targetusername=${SFDX_URL} --wait 1000 --publishwait 1000 --securitytype=AdminsOnly -k test1234
+          if [ -f rm PID.txt  ]; then
+            rm rm PID.txt  
+          fi
         '''
       }
     }
