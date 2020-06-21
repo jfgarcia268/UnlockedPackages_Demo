@@ -8,8 +8,7 @@
 DEVHUB_URL=$1
 
 echo "## Getting Version From Project File sfdx-project.json"
-VERSION_ATTRIBUTE=$(jq .packageDirectories[0].versionNumber sfdx-project.json)
-VERSION="${VERSION_ATTRIBUTE//\"}"
+VERSION=$(jq -r .packageDirectories[0].versionNumber sfdx-project.json)
 MAYOR_VERSION="$(cut -d'.' -f1 <<< "$VERSION")"
 MINOR_VERSION="$(cut -d'.' -f2 <<< "$VERSION")"
 PATCH_VERSION="$(cut -d'.' -f3 <<< "$VERSION")"

@@ -4,9 +4,6 @@ pipeline {
   tools {
     nodejs "UP-Node-12"
   }
-  environment {
-    PATH = "/usr/bin:$PATH"
-  }
   stages {
     stage('DevHub SFDX-Auth') {
       steps {
@@ -20,7 +17,7 @@ pipeline {
     }
     stage('Create Package Version') {
       steps {
-        sh 'sfdx force:package:version:create -p "${PACKAGE_NAME}" -d "${SOURCE_FOLDER}" -k "${KEY}"  --wait "${WAIT}" -v "${SFDX_URL_DEVHUB}"'
+        sh 'sfdx force:package:version:create -p "${PACKAGE_NAME}" -d "${SOURCE_FOLDER}" -k "${KEY}" --wait "${WAIT}" -v "${SFDX_URL_DEVHUB}"'
       }
     }
   }  

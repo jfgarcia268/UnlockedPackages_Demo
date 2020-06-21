@@ -8,7 +8,7 @@ pipeline {
     PATH = "/usr/bin:$PATH"
   }
   stages {
-    stage('DevHub SFDX-Auth') {
+    stage('DevHub Auth') {
       steps {
       	// creating SFDX Alias for auth
 		    sh 'echo ${SFDX_URL_DEVHUB}'
@@ -17,7 +17,7 @@ pipeline {
 		    sh 'rm -rf env.sfdx'
       }
     }
-    stage('Deploy Env SFDX-Auth') {
+    stage('Env Auth') {
       steps {
         // creating SFDX Alias for auth
         sh 'echo ${SFDX_URL}'
@@ -39,7 +39,7 @@ pipeline {
         '''
       }
     }
-    stage('SF Setup') {
+    stage('Salesforce Setup') {
       steps {
         sh 'sfdx force:data:tree:import --targetusername "${SFDX_URL}" --plan sfdx-data/Account-plan.json || true'
         sh 'sfdx force:user:permset:assign --targetusername "${SFDX_URL}" --permsetname HandsetBuy'
@@ -50,7 +50,7 @@ pipeline {
         sh 'vlocity -sfdx.username "$SFDX_URL" -job Deploy_Delta.yaml packDeploy --verbose true --simpleLogging true'
       }
     }
-    stage('Vlocity Setup') {
+    stage('Vlocity Post-Deploy') {
       steps {
         sh 'vlocity -sfdx.username "$SFDX_URL" --nojob runApex -apex apex/RunProductBatchJobs.cls --verbose true --simpleLogging true'
       }
