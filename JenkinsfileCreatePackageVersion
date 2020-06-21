@@ -17,6 +17,7 @@ pipeline {
     }
     stage('Create Package Version') {
       steps {
+        sh 'ls -la'
         sh 'sfdx force:package:version:create -p "${PACKAGE_NAME}" -d "${SOURCE_FOLDER}" -k "${KEY}" --wait "${WAIT}" -v "${SFDX_URL_DEVHUB}"'
       }
     }
