@@ -29,7 +29,8 @@ pipeline {
         sh '''
           ls -la
           sfdx force:package:version:list --verbose -v "${SFDX_URL_DEVHUB}" > PackageList.txt
-          sed '/.*€.*/d' PackageList.txt
+          sed '/.*€.*/d' PackageList.txt > tmpfile
+          mv tmpfile PackageList.txt
         '''
       }
     }
