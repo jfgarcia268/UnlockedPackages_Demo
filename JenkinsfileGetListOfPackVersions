@@ -22,6 +22,7 @@ pipeline {
     }
     stage('Create Package Version') {
       steps {
+        sh 'ls -la'
         sh 'sfdx force:package:version:list -v "${SFDX_URL_DEVHUB}" > PackageList.txt '
       }
     }
