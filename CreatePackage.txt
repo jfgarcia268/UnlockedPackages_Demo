@@ -1,0 +1,1 @@
+sfdx force:package:create --targetdevhubusername=<DevHub-ALIAS> --name=BuyHandset --path=force-app --packagetype=Unlocked
