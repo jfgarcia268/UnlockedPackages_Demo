@@ -24,10 +24,13 @@ pipeline {
 		    //sh 'sfdx force:org:display -u ${SFDX_URL_DEVHUB}'
       }
     }
-    stage('Create Package Version') {
+    stage('Get Package Version') {
       steps {
-        sh 'ls -la'
-        sh 'sfdx force:package:version:list --verbose -v "${SFDX_URL_DEVHUB}" > PackageList.txt '
+        sh '''
+          ls -la
+          sfdx force:package:version:list --verbose -v "${SFDX_URL_DEVHUB}" > PackageList.txt
+          sed '3d' PackageList.txt
+        '''
       }
     }
   }  
