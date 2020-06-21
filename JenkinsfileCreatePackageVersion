@@ -17,8 +17,15 @@ pipeline {
     }
     stage('Create Package Version') {
       steps {
-        sh 'ls -la'
-        sh 'sfdx force:package:version:create -p "${PACKAGE_NAME}" -d "${SOURCE_FOLDER}" -k "${KEY}" --wait "${WAIT}" -v "${SFDX_URL_DEVHUB}"'
+        sh '''
+        ls -la
+        echo "RUN_APEX_TESTS: ${RUN_APEX_TESTS}"
+        if [ RUN_APEX_TESTS ]; then
+          sfdx force:package:version:create -p "${PACKAGE_NAME}" -d "${SOURCE_FOLDER}" -k "${KEY}" --wait "${WAIT}" -v "${SFDX_URL_DEVHUB}" --codecoverage 
+        else
+          sfdx force:package:version:create -p "${PACKAGE_NAME}" -d "${SOURCE_FOLDER}" -k "${KEY}" --wait "${WAIT}" -v "${SFDX_URL_DEVHUB}" 
+        fi
+        '''      
       }
     }
   }  
