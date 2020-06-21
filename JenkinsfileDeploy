@@ -29,7 +29,12 @@ pipeline {
     stage('Get Latest Package Version') {
       steps {
         // Creates PID.txt file with latest package version from Line "versionNumber": "x.x.x.NEXT",  under sfdx-project.json file
-        sh './Get_Latest_Version_Package.sh ${SFDX_URL_DEVHUB}'
+         sh ''' 
+          if [ -f rm PID.txt  ]; then
+            rm rm PID.txt  
+          fi
+          ./Get_Latest_Version_Package.sh ${SFDX_URL_DEVHUB}
+          '''
       }
     }
     stage('Install Latest Package Version') {

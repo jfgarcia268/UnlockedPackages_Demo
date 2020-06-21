@@ -19,7 +19,13 @@ pipeline {
     }
     stage('Get Latest Package Version') {
       steps {
-        sh './Get_Latest_Version_Package.sh ${SFDX_URL_DEVHUB}'
+        // Creates PID.txt file with latest package version from Line "versionNumber": "x.x.x.NEXT",  under sfdx-project.json file
+         sh ''' 
+          if [ -f rm PID.txt  ]; then
+            rm rm PID.txt  
+          fi
+          ./Get_Latest_Version_Package.sh ${SFDX_URL_DEVHUB}
+          '''
       }
     }
     stage('Promote and Install Latest Package Version to Production') {
@@ -28,6 +34,9 @@ pipeline {
           PACKAGE_ID=$(cat PID.txt)
           echo "y" | sfdx force:package:version:promote --package ${PACKAGE_ID} --targetdevhubusername ${SFDX_URL_DEVHUB}
           sfdx force:package:install --package ${PACKAGE_ID} --targetusername=${SFDX_URL_DEVHUB} --wait 1000 --publishwait 1000 --securitytype=AdminsOnly -k ${KEY}
+          if [ -f rm PID.txt  ]; then
+            rm rm PID.txt  
+          fi
         '''
       }
     }
