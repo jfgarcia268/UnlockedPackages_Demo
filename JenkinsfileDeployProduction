@@ -1,0 +1,51 @@
+#!/usr/bin/env groovy
+pipeline {
+  agent any
+  tools {
+    nodejs "UP-Node-12"
+  }
+  environment {
+    PATH = "/usr/bin:$PATH"
+  }
+  stages {
+    stage('DevHub Auth') {
+      steps {
+      	// creating SFDX Alias for auth
+		    sh 'echo ${SFDX_URL_DEVHUB}'
+		    sh 'echo ${SFDX_URL_DEVHUB} > env.sfdx'
+		    sh 'sfdx force:auth:sfdxurl:store -d -a ${SFDX_URL_DEVHUB} -f env.sfdx'
+		    sh 'rm -rf env.sfdx'
+      }
+    }
+    stage('Get Latest Package Version') {
+      steps {
+        sh './Get_Latest_Version_Package.sh ${SFDX_URL_DEVHUB}'
+      }
+    }
+    stage('Promote and Install Latest Package Version to Production') {
+      steps {
+        sh '''
+          PACKAGE_ID=$(cat PID.txt)
+          echo "y" | sfdx force:package:version:promote --package ${PACKAGE_ID} --targetdevhubusername ${SFDX_URL_DEVHUB}
+          sfdx force:package:install --package ${PACKAGE_ID} --targetusername=${SFDX_URL_DEVHUB} --wait 1000 --publishwait 1000 --securitytype=AdminsOnly -k ${KEY}
+        '''
+      }
+    }
+    stage('Salesforce Setup') {
+      steps {
+        sh 'sfdx force:data:tree:import --targetusername "${SFDX_URL_DEVHUB}" --plan sfdx-data/Account-plan.json || true'
+        sh 'sfdx force:user:permset:assign --targetusername "${SFDX_URL_DEVHUB}" --permsetname HandsetBuy'
+      }
+    }
+    stage('Vlocity Deploy') {
+      steps {
+        sh 'vlocity -sfdx.username "$SFDX_URL_DEVHUB" -job Deploy_Delta.yaml packDeploy --verbose true --simpleLogging true'
+      }
+    }
+    stage('Vlocity Post-Deploy') {
+      steps {
+        sh 'vlocity -sfdx.username "$SFDX_URL_DEVHUB" --nojob runApex -apex apex/RunProductBatchJobs.cls --verbose true --simpleLogging true'
+      }
+    }
+  }  
+}

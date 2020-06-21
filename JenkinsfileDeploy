@@ -35,7 +35,7 @@ pipeline {
       steps {
         sh '''
           PACKAGE_ID=$(cat PID.txt)
-          sfdx force:package:install --package ${PACKAGE_ID} --targetusername=${SFDX_URL} --wait 80 --publishwait 80 --securitytype=AdminsOnly -k test1234
+          sfdx force:package:install --package ${PACKAGE_ID} --targetusername=${SFDX_URL} --wait 1000 --publishwait 1000 --securitytype=AdminsOnly -k test1234
         '''
       }
     }
