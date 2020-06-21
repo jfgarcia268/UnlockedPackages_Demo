@@ -19,12 +19,22 @@ pipeline {
       steps {
         sh '''
         ls -la
+
+        COMMAND="sfdx force:package:version:create -p ${PACKAGE_NAME} -d ${SOURCE_FOLDER} -k ${KEY} --wait ${WAIT} -v ${SFDX_URL_DEVHUB} "
+
         echo "RUN_APEX_TESTS: ${RUN_APEX_TESTS}"
         if [ RUN_APEX_TESTS ]; then
-          sfdx force:package:version:create -p "${PACKAGE_NAME}" -d "${SOURCE_FOLDER}" -k "${KEY}" --wait "${WAIT}" -v "${SFDX_URL_DEVHUB}" --codecoverage 
-        else
-          sfdx force:package:version:create -p "${PACKAGE_NAME}" -d "${SOURCE_FOLDER}" -k "${KEY}" --wait "${WAIT}" -v "${SFDX_URL_DEVHUB}" 
+           COMMAND = " ${COMMAND} --codecoverage " 
         fi
+
+        echo "SKIP_VALIDATION: ${SKIP_VALIDATION}"
+        if [ SKIP_VALIDATION ]; then
+           COMMAND = " ${COMMAND} --skipvalidation " 
+        fi
+
+        echo "COMMAND: ${COMMAND}"
+        
+        ##${COMMAND}
         '''      
       }
     }
