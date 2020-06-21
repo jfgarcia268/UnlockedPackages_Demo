@@ -23,12 +23,12 @@ pipeline {
         COMMAND="sfdx force:package:version:create -p ${PACKAGE_NAME} -d ${SOURCE_FOLDER} -k ${KEY} --wait ${WAIT} -v ${SFDX_URL_DEVHUB} "
 
         echo "RUN_APEX_TESTS: ${RUN_APEX_TESTS}"
-        if [ ${RUN_APEX_TESTS} == true ]; then
+        if [ ${RUN_APEX_TESTS} ]; then
            COMMAND+=" --codecoverage " 
         fi
 
         echo "SKIP_VALIDATION: ${SKIP_VALIDATION}"
-        if [ ${SKIP_VALIDATION} == true ]; then
+        if [ ${SKIP_VALIDATION} ]; then
            COMMAND+=" --skipvalidation " 
         fi
 
