@@ -5,9 +5,13 @@ pipeline {
     nodejs "UP-Node-12"
   }
   stages {
-    stage('Clean Workspace') {
+    stage('Clean Old File') {
       steps {
-        cleanWs()
+        sh '''
+          if [ -f PackageList.txt  ]; then
+            rm PackageList.txt  
+          fi
+        '''
       }
     }
     stage('DevHub SFDX-Auth') {
