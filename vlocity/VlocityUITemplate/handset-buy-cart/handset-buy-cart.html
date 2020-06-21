@@ -1,0 +1,110 @@
+<div class="vlc-slds-cart-container slds-size--1-of-1" ng-class="{'vlc-slds-cart-vdf-bottom-aligned':reRenderAttributesForm}"
+     ng-init="showCurrentSection=false;showCart = false; prodHierLevel = 0; showErrorIcon = false; canOrderCheckout = false;" ng-controller='hybridCPQCartController'>
+
+    <div id="{{bpTree.pcId[vlcPC.pcIndex]}}_Top" class="vlc-slds-cart-container-top-panel" vlc-prevent-parent-scroll>
+        <div class='vlc-slds-cart-toggle' ng-click="showCart = !showCart; (showCart == false ? reRenderAttributesForm = null : reRenderAttributesForm);"></div>
+        <div class="slds-form-element__label slds-form-element-left_label"> 
+            <span class="slds-form-element-left_label--items">{{bpTree.response.vlcPersistentComponent[bpTree.pcId[vlcPC.pcIndex]]['records'].length ? bpTree.response.vlcPersistentComponent[bpTree.pcId[vlcPC.pcIndex]]['records'].length : 0}} {{::customLabels.OmniCpqItemsInCart}} <span class="slds-form-element-left_label--items_more" ng-if="bpTree.response.vlcPersistentComponent[bpTree.pcId[vlcPC.pcIndex]].actions">({{::customLabels.OmniCpqItemsInCartMore}})</span></span>
+            <span ng-show="showErrorIcon">
+                <slds-svg-icon sprite="'utility'" icon="'warning'" extra-classes="'vlc-slds-cart-warning-icon'" size="'small'"></slds-svg-icon>
+            </span>
+        </div>
+
+        <div class="slds-form-element-right_label">
+            <div class="slds-form-element__label" style='margin-right: 2em;'>
+                <span class='slds-form-element__label_name'>{{bpTree.response.vlcPersistentComponent[bpTree.pcId[vlcPC.pcIndex]+'_Top'][0].records[0].details.records[0]['EffectiveOneTimeTotal__c'] | currency:bpTree.cpqCurrencySymbol | numFormatFilter }}</span>
+            </div>
+        </div>
+   </div>
+   <div class="vlc-slds-cart-container-bottom-panel" ng-show="showCart" vlc-prevent-parent-scroll>
+
+        <!-- please upload -->
+        <section class="vlc-slds-hCart-section">
+            <div class="slds-form-element-left_label--text">
+                <span>{{::vlcPC.label}}</span>
+            </div>
+            <div class="vlc-slds-line-item"
+                 ng-repeat="i in bpTree.response.vlcPersistentComponent[bpTree.pcId[vlcPC.pcIndex]]['records'] | filterProductsItems:{ProvisioningStatus__c:[nsPrefix,'New','Pending','Changed']}"
+                 ng-include="'vlcTopCartHierarchyHyb.html'" ng-init="gParentId = i.Id.value">
+            </div>
+
+        </section>
+
+       <section class="vlc-slds-hCart-section">
+            <div class="slds-form-element-left_label--text" ng-if="(bpTree.response.vlcPersistentComponent[bpTree.pcId[vlcPC.pcIndex]]['records'] | filterProductsItems:{ProvisioningStatus__c:[nsPrefix,'Active','Inactive']}).length > 0" style='border-top: 1px solid #D8DDE6;' >
+                <span>{{::customLabels.OmniCurrentSetup}}</span>
+            </div>
+            <div class="vlc-slds-line-item"
+                 ng-repeat="i in bpTree.response.vlcPersistentComponent[bpTree.pcId[vlcPC.pcIndex]]['records'] | filterProductsItems:{ProvisioningStatus__c:[nsPrefix,'Active','Inactive']}"
+                 ng-include="'vlcTopCartHierarchyHyb.html'" ng-init="gParentId = i.Id.value">
+            </div>
+
+        </section>
+        <div class='vlc-slds-loadmore-cartItems-link' 
+             ng-if="bpTree.response.vlcPersistentComponent[bpTree.pcId[vlcPC.pcIndex]].actions">
+            <a title="Load More"
+                ng-click="baseCtrl.loadMoreCartItems(bpTree.response.vlcPersistentComponent[bpTree.pcId[vlcPC.pcIndex]].actions, this)">
+                {{::customLabels.OmniSelItemLoadMore}}
+           </a>
+        </div>
+
+    </div>
+    <div ng-if="reRenderAttributesForm && showCart" class="vlc-slds-vdf-attribute-config">
+        <div class="vlc-slds--vdf-attribute-name">
+            <span>{{configItemObject.Name}}</span>
+        </div>
+        <button class="slds-button vlc-slds-button--vdf-attribute-close" ng-click="closeAttributePanel()">
+            <slds-button-svg-icon sprite="'utility'" size="'large'" icon="'close'"></slds-button-svg-icon>
+            <span class="slds-assistive-text">Close</span>
+        </button>
+        <div class="vlc-slds-vdf-attribute-config__panel" vlc-prevent-parent-scroll>
+            <div ng-if="configAttributeObj && configAttributeObj.length > 0">
+                <vlocity-dynamic-form name="productconfig" form-on-change="getModifiedAttributes(e, null, true);"
+                    ng-model="configAttributeObj" map-object="{{mapVDFObject()}}" class="slds-form--stacked" form-auto-save="true">
+                </vlocity-dynamic-form>
+            </div>
+            <div ng-if="configAttributeObj && configAttributeObj.length === 0" class="vlc-slds-vdf-attribute-config__noconfigattr-msg">
+                {{::customLabels.OmniNoConfigAttrMsg}}
+            </div>
+<!-- 
+            <div class="slds-m-top--x-large" ng-init="showInfo = true">
+                <div class="slds-section" ng-class="{'slds-is-open': showInfo, 'slds-is-closed': !showInfo}">
+                    <h3 href="javascript:void(0);" class="slds-section__title" ng-click="showInfo = !showInfo">
+                        <button type="button" class="slds-button slds-section__title-action">
+                            <slds-button-svg-icon sprite="'utility'" icon="'switch'" extra-classes="'slds-section__title-action-icon slds-button__icon--left'"></slds-button-svg-icon>
+                            Additional Setting
+                        </button>
+                     </h3>
+                    <div class="slds-section__content">
+                        <div class="slds-form--stacked">
+                            <div class="slds-form-element" ng-repeat="lookupItem in lookupItemList">
+                                <span class="slds-form-element__label slds-text-body--regular">{{::lookupItem.label}}</span>
+                                <div class="slds-form-element__control slds-input-has-fixed-addon">
+                                    <span class="slds-form-element__static">{{lookupItem.displayValue}}</span>
+                                    <span class="slds-form-element__addon">
+                                        <button type="button" class="slds-button slds-p-horizontal--xx-small" ng-click="launchLineItemLookup(lookupItem)">
+                                            <slds-button-svg-icon sprite="'utility'" icon="'edit'"></slds-button-svg-icon>
+                                            <span class="slds-assistive-text">Display Lookup Values</span>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="slds-form-element" ng-repeat="editableItem in editableItemList">
+                                <label class="slds-form-element__label">{{::editableItem.label}}<span ng-if="editableItem.dataType === 'PERCENT'"> %</span></label>
+                                <div class="slds-form-element__control">
+                                    <input ng-if="::editableItem.dataType === 'STRING'" type='text' class="slds-input" ng-model='editableItem.value' ng-model-options="{ updateOn: 'default blur', debounce: { 'default': 800, 'blur': 0 } }"
+                                    ng-change="refreshEditableField(editableItem , true);"/>
+                                    <input ng-if="::(editableItem.fieldName === 'Quantity' || editableItem.dataType === 'CURRENCY' || editableItem.dataType === 'PERCENT')" type='number' step='any' class="slds-input" ng-model='editableItem.value'  ng-model-options="{ updateOn: 'default blur', debounce: { 'default': 800, 'blur': 0 } }"
+                                        ng-change="refreshEditableField(editableItem, true);"/>
+                                    <span class="error-msg">{{editableItem.qtyValidationMessage}}</span>
+                                </div>
+                            </div>
+                         </div>
+                    </div>
+                </div>
+            </div>
+             -->
+        </div>
+    </div>
+
+</div>

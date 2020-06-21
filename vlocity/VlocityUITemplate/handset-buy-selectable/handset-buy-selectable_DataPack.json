@@ -1,0 +1,19 @@
+{
+    "%vlocity_namespace%__Author__c": "VlocityBuildSample",
+    "%vlocity_namespace%__CSS__c": "",
+    "%vlocity_namespace%__CustomJavascript__c": "",
+    "%vlocity_namespace%__Definition__c": "",
+    "%vlocity_namespace%__Description__c": "",
+    "%vlocity_namespace%__DisplayOn__c": "",
+    "%vlocity_namespace%__ExternalID__c": "handset-buy-selectable/1/VlocityBuildSample/1537112370193",
+    "%vlocity_namespace%__HTML__c": "handset-buy-selectable.html",
+    "%vlocity_namespace%__ParentID__c": "BuyMobile/1/VlocityBuildSample/1536986032678",
+    "%vlocity_namespace%__SampleJson__c": "handset-buy-selectable_Sample.json",
+    "%vlocity_namespace%__Sass__c": "",
+    "%vlocity_namespace%__Type__c": "OmniScript Selectable Items",
+    "%vlocity_namespace%__Version__c": 1,
+    "Name": "handset-buy-selectable",
+    "VlocityDataPackType": "SObject",
+    "VlocityRecordSObjectType": "%vlocity_namespace%__VlocityUITemplate__c",
+    "VlocityRecordSourceKey": "%vlocity_namespace%__VlocityUITemplate__c/handset-buy-selectable"
+}

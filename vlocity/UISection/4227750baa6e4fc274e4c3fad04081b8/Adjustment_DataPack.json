@@ -1,0 +1,10 @@
+{
+    "%vlocity_namespace%__EffectiveFromDate__c": "",
+    "%vlocity_namespace%__EffectiveUntilDate__c": "",
+    "%vlocity_namespace%__GlobalKey__c": "4227750baa6e4fc274e4c3fad04081b8",
+    "%vlocity_namespace%__IsActive__c": true,
+    "Name": "Adjustment",
+    "VlocityDataPackType": "SObject",
+    "VlocityRecordSObjectType": "%vlocity_namespace%__UISection__c",
+    "VlocityRecordSourceKey": "%vlocity_namespace%__UISection__c/4227750baa6e4fc274e4c3fad04081b8"
+}

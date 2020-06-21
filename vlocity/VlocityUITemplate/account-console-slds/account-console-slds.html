@@ -1,0 +1,42 @@
+<div class="slds-card via-slds-card--active slds-m-bottom--small" data-card="{{uniqueLayoutId}}-card-{{cardIndex}}" ng-class="{selected:isSelected(cardIndex)}"  data-popover-flyout="true">
+  <div class="via-slds-card__header slds-card__header slds-grid slds-grid--vertical-align-center slds-p-around--small" ng-click="performFlyout(uniqueLayoutId + '-card-'+cardIndex)">
+    <div class="slds-media slds-media--center slds-has-flexi-truncate">
+      <div class="slds-media__figure">
+          <vloc-card-icon data="data" obj="obj" size="'medium'"></vloc-card-icon>
+      </div>
+      <div class="slds-media__body slds-truncate">
+        <a href="javascript:void(0);" class="slds-text-link--reset" tooltip-placement="bottom" tooltip="{{data.title}}">
+          <span class="slds-text-heading--small">{{data.title}}</span>
+        </a>
+        <br />
+        <span>{{data.fields[0].label}} {{obj | getter:data.fields[0] | picker:data.fields[0].type}}</span> <span ng-if="obj.LastModifiedDate">| {{::$root.vlocity.getCustomLabel('LastModified', 'Last modified')}}: {{obj.LastModifiedDate | picker:'date'}}</span>
+      </div>
+    </div>
+    <div class="slds-no-flex" ng-init="overflowActions = data.actions.slice(data.limitActionLinksTo?data.limitActionLinksTo:5)">
+        <slds-dropdown content="overflowActions" ng-if="overflowActions.length > 0" icon-attribute="vlocityIcon" label-attribute="displayName" action-function="performAction(item)" button-size="medium"></slds-dropdown>
+    </div>
+  </div>
+  <div class="slds-card__body via-slds-card__body slds-grid slds-wrap slds-theme--default slds-p-around--medium">
+      <div class="slds-col--padded slds-size--1-of-2">
+          <div class="via-field slds-tile slds-p-bottom--medium" ng-repeat="field in data.fields.slice(1) " ng-show="key != 'attributes'">
+            <p class="slds-truncate slds-text-heading--label" title="{{field.label}}">{{field.label}}</p>
+            <div class="slds-tile__detail slds-text-heading--small ">
+                <p class="slds-truncate" ng-if="!obj[field.relationshipName]">{{obj | getter: field | picker: field.type}} </p>
+                <p class="slds-truncate" ng-if="obj[field.relationshipName]">{{obj[field.relationshipName]['Name']}} </p>
+            </div>
+            <div class="track-view" ng-click="trackField(field,entityName, field.label)">
+                <vloc-card-icon icon="'preview'" sprite="'utility'" size="'small'" extra-classes="'big via-action-icon slds-icon-text-default'">
+                </vloc-card-icon>
+            </div>
+        </div>
+      </div>
+      <div class="slds-col--padded slds-size--1-of-2">
+          <div class="slds-tile slds-p-top--x-small slds-p-bottom--medium slds-truncate" ng-repeat="action in data.actions | limitTo: (data.limitActionLinksTo?data.limitActionLinksTo:5)">
+              <p class="slds-truncate slds-text-heading--label"> </p>
+              <a href="javascript:void(0);" class="slds-truncate via-action-link slds-text-link--reset" ng-click="performAction(action)">
+                <vloc-card-icon data="action" obj="obj" size="'small'" extra-classes="'big via-action-icon slds-icon-text-default'"></vloc-card-icon>{{action.displayName}}
+              </a>
+          </div>
+      </div>
+  </div>
+</div>

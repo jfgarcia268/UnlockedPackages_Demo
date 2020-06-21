@@ -1,0 +1,68 @@
+{
+    "dataSource": {
+        "type": null,
+        "value": {
+        }
+    },
+    "filter": {
+    },
+    "states": [
+        {
+            "actionCtxId": "['Id']",
+            "conditions": {
+                "group": [
+                    {
+                        "field": "$scope.data.status",
+                        "operator": "===",
+                        "type": "system",
+                        "value": "'active'"
+                    }
+                ]
+            },
+            "definedActions": {
+                "actions": [
+                    {
+                        "collapse": true,
+                        "hasExtraParams": false,
+                        "id": "HandsetBuy",
+                        "isCustomAction": false,
+                        "type": "Vlocity Action"
+                    }
+                ]
+            },
+            "fields": [
+                {
+                    "collapse": true,
+                    "displayLabel": "['Name']",
+                    "fieldType": "standard",
+                    "group": "Custom Properties",
+                    "label": "Name",
+                    "name": "['Name']",
+                    "type": "string"
+                },
+                {
+                    "collapse": true,
+                    "displayLabel": "['BillingCity']",
+                    "fieldType": "standard",
+                    "group": "Custom Properties",
+                    "label": "BillingCity",
+                    "name": "['BillingCity']",
+                    "type": "string"
+                },
+                {
+                    "collapse": true,
+                    "displayLabel": "['BillingState']",
+                    "fieldType": "standard",
+                    "group": "Custom Properties",
+                    "label": "BillingState",
+                    "name": "['BillingState']",
+                    "type": "string"
+                }
+            ],
+            "name": "AccountConsoleComm",
+            "sObjectType": "Account",
+            "templateUrl": "account-console-slds"
+        }
+    ],
+    "title": "Accounts"
+}

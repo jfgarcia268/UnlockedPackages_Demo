@@ -1,0 +1,19 @@
+<div class="cards-container">
+    <form class="form-inline">
+    <div class="form-group">
+        <button class="btn btn-primary" style="margin-right:5px;" onclick="window.location.reload()">
+           {{::$root.vlocity.getCustomLabel('Refresh', 'Refresh')}}
+           <span class="icon icon-v-refresh" style="color:white"></span>
+        </button>
+        <!--<button class="btn btn-primary" style="margin-right:5px;" ng-click="setOrder('status')">-->
+        <!--   Sort-->
+        <!--</button>-->
+        <label for="exampleInputName2" style="text-transform: initial;">{{::$root.vlocity.getCustomLabel('SearchCards', 'Search Cards')}}: </label>
+        <input type="text" class="form-control" style="text-transform: initial;" ng-model="$parent.searchTerm" placeholder="{{::$root.vlocity.getCustomLabel('SearchCardsPlaceholder', 'search...')}}'"/>
+    </div>
+    </form>
+    <div>
+        <vloc-card ng-repeat="card in cards |orderBy:order|filter: searchFunc(card)" ctrl="{{ctrl}}" ng-model="card" data="card" records="records" index="{{$index}}" session-id="{{sessionId}}"></vloc-card>
+    </div>
+    <span id="flyout"></span>
+</div>

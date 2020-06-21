@@ -1,0 +1,26 @@
+{
+    "Cards": [
+        "AccountConsole"
+    ],
+    "customPreviewPages": [
+        {
+            "group": "Custom Pages",
+            "label": "AccountConsoleCards",
+            "page": "AccountConsoleCards"
+        }
+    ],
+    "dataSource": {
+        "type": "Query",
+        "value": {
+        }
+    },
+    "previewType": "runTime",
+    "templates": {
+        "0": {
+            "templateUrl": "account-console-canvas"
+        }
+    },
+    "workspace": [
+        "AccountConsole/MyProject/1/1536933330733"
+    ]
+}

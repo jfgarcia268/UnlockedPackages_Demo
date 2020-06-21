@@ -1,0 +1,14 @@
+{
+    "%vlocity_namespace%__IsDefault__c": true,
+    "%vlocity_namespace%__IsOpportunityDefault__c": true,
+    "%vlocity_namespace%__IsOrderDefault__c": true,
+    "%vlocity_namespace%__isQuoteDefault__c": true,
+    "Description": "This pricebook contains all consumer mobile products.",
+    "IsActive": true,
+    "IsArchived": false,
+    "IsStandard": false,
+    "Name": "B2C - Mobile",
+    "VlocityDataPackType": "SObject",
+    "VlocityRecordSObjectType": "Pricebook2",
+    "VlocityRecordSourceKey": "Pricebook2/B2C - Mobile"
+}

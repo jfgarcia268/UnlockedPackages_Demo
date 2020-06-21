@@ -1,0 +1,14 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "Account",
+                "referenceId": "AccountRef1"
+            },
+            "Name": "Account1",
+            "BillingCity": "San Francisco",
+            "BillingState": "CA",
+            "vlocity_cmt__Status__c" :"Active"
+        }
+    ]
+}

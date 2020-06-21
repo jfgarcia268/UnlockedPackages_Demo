@@ -1,0 +1,77 @@
+{
+    "data": {
+        "actions": [
+            {
+                "displayName": "Raise Alert",
+                "vlocityIcon": "icon-v-alert"
+            },
+            {
+                "displayName": "Add Note",
+                "vlocityIcon": "icon-v-note"
+            },
+            {
+                "displayName": "Print",
+                "vlocityIcon": "icon-v-print"
+            },
+            {
+                "displayName": "Add New Payment",
+                "vlocityIcon": "icon-v-payment"
+            },
+            {
+                "displayName": "View Stats",
+                "vlocityIcon": "icon-v-graph"
+            },
+            {
+                "displayName": "Add Follow Up",
+                "vlocityIcon": "icon-v-follow-up"
+            },
+            {
+                "displayName": "Contact",
+                "vlocityIcon": "icon-v-email"
+            }
+        ],
+        "fields": [
+            {
+                "label": "Expires:",
+                "name": "expires",
+                "type": "datetime"
+            },
+            {
+                "label": "Type",
+                "name": "type"
+            },
+            {
+                "label": "Website",
+                "name": "website"
+            },
+            {
+                "label": "Industry",
+                "name": "industry"
+            },
+            {
+                "label": "Account Owner",
+                "name": "accountowner"
+            },
+            {
+                "label": "Annual Revenue",
+                "name": "annualrevenue",
+                "type": "currency"
+            }
+        ],
+        "title": "Card Title"
+    },
+    "obj": {
+        "Id": "123456",
+        "LastModifiedDate": "2016-02-05T21:52:18.587Z",
+        "Name": "Burlington Textiles Corp of America",
+        "accountowner": "John Smith",
+        "annualrevenue": 350000000,
+        "attributes": {
+            "type": "Account"
+        },
+        "expires": "2016-02-05T21:52:18.587Z",
+        "industry": "Apparel",
+        "type": "Customer - Direct",
+        "website": "http://www.burlington.com"
+    }
+}

@@ -1,0 +1,21 @@
+{
+  "orgName": "jgonzalez Company",
+  "edition": "Enterprise",
+  "features": [ "AuthorApex", "DebugApex"],
+  "settings": {
+    "productSettings": {
+      "enableRevenueSchedule" : true, 
+      "enableQuantitySchedule" : true, 
+      "enableCascadeActivateToRelatedPrices" : true
+    },
+    "quoteSettings": {
+      "enableQuote": true
+    },
+      "lightningExperienceSettings": {
+      "enableS1DesktopEnabled": true
+    },
+      "emailAdministrationSettings": {
+      "enableEnhancedEmailEnabled": true
+    }
+  }
+}

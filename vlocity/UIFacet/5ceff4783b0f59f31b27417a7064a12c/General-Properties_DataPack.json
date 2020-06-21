@@ -1,0 +1,12 @@
+{
+    "%vlocity_namespace%__EffectiveFromDate__c": "",
+    "%vlocity_namespace%__EffectiveUntilDate__c": "",
+    "%vlocity_namespace%__GlobalKey__c": "5ceff4783b0f59f31b27417a7064a12c",
+    "%vlocity_namespace%__IconVlocityAttachmentId__c": "",
+    "%vlocity_namespace%__IframeSource__c": "",
+    "%vlocity_namespace%__IsActive__c": true,
+    "Name": "General Properties",
+    "VlocityDataPackType": "SObject",
+    "VlocityRecordSObjectType": "%vlocity_namespace%__UIFacet__c",
+    "VlocityRecordSourceKey": "%vlocity_namespace%__UIFacet__c/5ceff4783b0f59f31b27417a7064a12c"
+}

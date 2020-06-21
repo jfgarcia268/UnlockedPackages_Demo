@@ -1,0 +1,66 @@
+[
+    {
+        "%vlocity_namespace%__InterfaceId__c": {
+            "Name": "PricingInterface",
+            "VlocityDataPackType": "VlocityMatchingKeyObject",
+            "VlocityMatchingRecordSourceKey": "%vlocity_namespace%__InterfaceImplementation__c/PricingInterface",
+            "VlocityRecordSObjectType": "%vlocity_namespace%__InterfaceImplementation__c"
+        },
+        "%vlocity_namespace%__InterfaceId__r.Name": "PricingInterface",
+        "%vlocity_namespace%__InterfaceName__c": "PricingInterface",
+        "%vlocity_namespace%__IsActive__c": false,
+        "%vlocity_namespace%__IsDefault__c": false,
+        "Name": "PricingElementServiceImplementation",
+        "VlocityDataPackType": "SObject",
+        "VlocityRecordSObjectType": "%vlocity_namespace%__InterfaceImplementationDetail__c",
+        "VlocityRecordSourceKey": "%vlocity_namespace%__InterfaceImplementationDetail__c/%vlocity_namespace%__InterfaceImplementation__c/PricingInterface/PricingElementServiceImplementation"
+    },
+    {
+        "%vlocity_namespace%__InterfaceId__c": {
+            "Name": "PricingInterface",
+            "VlocityDataPackType": "VlocityMatchingKeyObject",
+            "VlocityMatchingRecordSourceKey": "%vlocity_namespace%__InterfaceImplementation__c/PricingInterface",
+            "VlocityRecordSObjectType": "%vlocity_namespace%__InterfaceImplementation__c"
+        },
+        "%vlocity_namespace%__InterfaceId__r.Name": "PricingInterface",
+        "%vlocity_namespace%__InterfaceName__c": "PricingInterface",
+        "%vlocity_namespace%__IsActive__c": false,
+        "%vlocity_namespace%__IsDefault__c": false,
+        "Name": "PricingRulesImplementation",
+        "VlocityDataPackType": "SObject",
+        "VlocityRecordSObjectType": "%vlocity_namespace%__InterfaceImplementationDetail__c",
+        "VlocityRecordSourceKey": "%vlocity_namespace%__InterfaceImplementationDetail__c/%vlocity_namespace%__InterfaceImplementation__c/PricingInterface/PricingRulesImplementation"
+    },
+    {
+        "%vlocity_namespace%__InterfaceId__c": {
+            "Name": "PricingInterface",
+            "VlocityDataPackType": "VlocityMatchingKeyObject",
+            "VlocityMatchingRecordSourceKey": "%vlocity_namespace%__InterfaceImplementation__c/PricingInterface",
+            "VlocityRecordSObjectType": "%vlocity_namespace%__InterfaceImplementation__c"
+        },
+        "%vlocity_namespace%__InterfaceId__r.Name": "PricingInterface",
+        "%vlocity_namespace%__InterfaceName__c": "PricingInterface",
+        "%vlocity_namespace%__IsActive__c": false,
+        "%vlocity_namespace%__IsDefault__c": true,
+        "Name": "DefaultPricingImplementation",
+        "VlocityDataPackType": "SObject",
+        "VlocityRecordSObjectType": "%vlocity_namespace%__InterfaceImplementationDetail__c",
+        "VlocityRecordSourceKey": "%vlocity_namespace%__InterfaceImplementationDetail__c/%vlocity_namespace%__InterfaceImplementation__c/PricingInterface/DefaultPricingImplementation"
+    },
+    {
+        "%vlocity_namespace%__InterfaceId__c": {
+            "Name": "PricingInterface",
+            "VlocityDataPackType": "VlocityMatchingKeyObject",
+            "VlocityMatchingRecordSourceKey": "%vlocity_namespace%__InterfaceImplementation__c/PricingInterface",
+            "VlocityRecordSObjectType": "%vlocity_namespace%__InterfaceImplementation__c"
+        },
+        "%vlocity_namespace%__InterfaceId__r.Name": "PricingInterface",
+        "%vlocity_namespace%__InterfaceName__c": "PricingInterface",
+        "%vlocity_namespace%__IsActive__c": true,
+        "%vlocity_namespace%__IsDefault__c": false,
+        "Name": "PricingPlanService",
+        "VlocityDataPackType": "SObject",
+        "VlocityRecordSObjectType": "%vlocity_namespace%__InterfaceImplementationDetail__c",
+        "VlocityRecordSourceKey": "%vlocity_namespace%__InterfaceImplementationDetail__c/%vlocity_namespace%__InterfaceImplementation__c/PricingInterface/PricingPlanService"
+    }
+]

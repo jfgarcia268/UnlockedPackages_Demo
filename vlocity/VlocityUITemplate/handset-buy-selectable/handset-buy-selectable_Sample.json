@@ -1,0 +1,22 @@
+{
+    "AddToCart": "Add to Cart",
+    "OmniMonthly": "Monthly Cost",
+    "OmniOneTime": "One Time Cost",
+    "control": {
+        "itemsKey": "results",
+        "propSetMap": {
+            "label": "Property Label"
+        },
+        "vlcSI": {
+            "results": [
+                {
+                    "Description": "Product Description",
+                    "MonthlyCost": 20,
+                    "Name": "Product Name",
+                    "OneTimeCost": 100,
+                    "added": false
+                }
+            ]
+        }
+    }
+}

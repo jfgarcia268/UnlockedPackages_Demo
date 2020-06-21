@@ -1,0 +1,21 @@
+{
+    "%vlocity_namespace%__Channel__c": "",
+    "%vlocity_namespace%__ContentType__c": "Image",
+    "%vlocity_namespace%__Description__c": "",
+    "%vlocity_namespace%__GlobalKey__c": "85c75cec-3117-bcc2-02a0-6c78484f0737",
+    "%vlocity_namespace%__IsDefaultImage__c": true,
+    "%vlocity_namespace%__IsPrivate__c": false,
+    "%vlocity_namespace%__ObjectId__c": {
+        "%vlocity_namespace%__GlobalKey__c": "6e28982d-57c8-5bd3-e6db-d66c02c20e43",
+        "VlocityDataPackType": "VlocityLookupMatchingKeyObject",
+        "VlocityLookupRecordSourceKey": "Product2/6e28982d-57c8-5bd3-e6db-d66c02c20e43",
+        "VlocityRecordSObjectType": "Product2"
+    },
+    "%vlocity_namespace%__SequenceNumber__c": 0,
+    "%vlocity_namespace%__UrlLong__c": "/resource/ProductImages/TNAirpods.png",
+    "%vlocity_namespace%__Url__c": "",
+    "Name": "Apple AirPods Product Image",
+    "VlocityDataPackType": "SObject",
+    "VlocityRecordSObjectType": "%vlocity_namespace%__VlocityAttachment__c",
+    "VlocityRecordSourceKey": "%vlocity_namespace%__VlocityAttachment__c/85c75cec-3117-bcc2-02a0-6c78484f0737"
+}

@@ -1,0 +1,24 @@
+{
+    "packageDirectories": [
+        {
+            "path": "force-app",
+            "default": true,
+            "package": "BuyHandset",
+            "versionName": "ver 0.1",
+            "versionNumber": "0.1.0.NEXT",
+            "definitionFile": "config/project-scratch-def.json",
+            "dependencies": [
+                {
+                    "package": "Vlocity CMT"
+                }
+            ]
+        }
+    ],
+    "namespace": "",
+    "sfdcLoginUrl": "https://login.salesforce.com",
+    "sourceApiVersion": "48.0",
+    "packageAliases": {
+        "Vlocity CMT": "04t1J000000lZ3H",
+        "BuyHandset": "0Ho4R000000blLKSAY"
+    }
+}

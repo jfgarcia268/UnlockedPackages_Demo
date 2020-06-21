@@ -1,0 +1,61 @@
+<a class="slds-size--12-of-12 slds-medium-size--12-of-12 slds-large-size--12-of-12 vlc-slds-items--container"
+
+   ng-click="baseCtrl.addProductToCart(p, control, this)"
+   vlc-slds-prod-desc="{{ p.Product2.Description }}"
+   ng-repeat='p in control.vlcSI[control.itemsKey][0].records'>
+
+    <div class="slds-grid slds-box vlc-slds-selectableItem">
+
+        <div class="slds-size--2-of-12 slds-box vlc-slds-item--image" ng-if="!p.Attachments"></div>
+        <div class="slds-size--2-of-12 slds-box vlc-slds-item--image" ng-repeat='a in p.Attachments'>
+            <img src="{{a.url}}" alt="{{a.title}}" ng-if="a.contentType === 'Image'"/>
+        </div>
+
+        <div class="slds-size--6-of-12 vlc-slds-item--details">
+
+            <label class="slds-form__element__label">
+                {{p.Name.value}}
+            </label>
+
+            <label class="slds-form__element__label">
+                {{p.Product2.Description}}
+            </label>
+
+        </div>
+
+
+        <div class="slds-size--2-of-12 vlc-slds-item--onecost" ng-init="UnitPrice = p.UnitPrice.value ? p.UnitPrice.value : 0.00">
+
+            <label class="slds-form__element__label">
+                {{UnitPrice | currency:bpTree.cpqCurrencySymbol  | numFormatFilter}}
+            </label>
+        </div>
+
+        <div class="vls-slds-item--action">
+
+            <span class="slds-icon_container slds-icon-action-approval slds-icon_container--circle">
+                <slds-svg-icon aria-hidden="true"
+                               sprite="'action'"
+                               icon="'approval'"
+                               size="'small'"
+                               extra-classes="''">
+                </slds-svg-icon>
+            </span>
+
+        </div>
+
+    </div>
+
+</a>
+<div class='vlc-slds-loadmore-products-btn vlc-slds-remote-action--button' ng-if="control.vlcSI[control.itemsKey][0].actions">
+    <div class="slds-form-element__control">
+        <div class="vlc-control-wrapper">
+            <div id="loadMoreProducts"
+                 class='slds-box'
+                 title="Load More"
+                 ng-click="baseCtrl.loadMoreProducts(control, this)">
+                <p>{{::customLabels.OmniSelItemLoadMore}}</p>
+            </div>
+        </div>
+    </div>
+</div>

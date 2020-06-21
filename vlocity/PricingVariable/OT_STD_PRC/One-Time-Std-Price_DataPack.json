@@ -1,0 +1,22 @@
+{
+    "%vlocity_namespace%__AdjustmentMethod__c": "",
+    "%vlocity_namespace%__Aggregation__c": "Unit",
+    "%vlocity_namespace%__AppliesToVariableId__c": "",
+    "%vlocity_namespace%__AppliesTo__c": "",
+    "%vlocity_namespace%__ChargeType__c": "One-time",
+    "%vlocity_namespace%__Code__c": "OT_STD_PRC",
+    "%vlocity_namespace%__CurrencyType__c": "Currency",
+    "%vlocity_namespace%__Description__c": "",
+    "%vlocity_namespace%__GlobalKey__c": "6d264b-6d5c1a-c0bd98-8cff7d-7644ddf6e",
+    "%vlocity_namespace%__IsActive__c": true,
+    "%vlocity_namespace%__PricingVariableBinding__c": "One-Time-Std-Price_PricingVariableBindings.json",
+    "%vlocity_namespace%__RecurringFrequency__c": "",
+    "%vlocity_namespace%__Scope__c": "Line",
+    "%vlocity_namespace%__SubType__c": "Standard",
+    "%vlocity_namespace%__Type__c": "Price",
+    "%vlocity_namespace%__ValueType__c": "Pricing Element",
+    "Name": "One Time Std Price",
+    "VlocityDataPackType": "SObject",
+    "VlocityRecordSObjectType": "%vlocity_namespace%__PricingVariable__c",
+    "VlocityRecordSourceKey": "%vlocity_namespace%__PricingVariable__c/OT_STD_PRC"
+}

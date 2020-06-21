@@ -1,0 +1,59 @@
+#!/usr/bin/env groovy
+pipeline {
+  agent any
+  tools {
+    nodejs "UP-Node-12"
+  }
+  environment {
+    PATH = "/usr/bin:$PATH"
+  }
+  stages {
+    stage('DevHub SFDX-Auth') {
+      steps {
+      	// creating SFDX Alias for auth
+		    sh 'echo ${SFDX_URL_DEVHUB}'
+		    sh 'echo ${SFDX_URL_DEVHUB} > env.sfdx'
+		    sh 'sfdx force:auth:sfdxurl:store -d -a ${SFDX_URL_DEVHUB} -f env.sfdx'
+		    sh 'rm -rf env.sfdx'
+      }
+    }
+    stage('Deploy Env SFDX-Auth') {
+      steps {
+        // creating SFDX Alias for auth
+        sh 'echo ${SFDX_URL}'
+        sh 'echo ${SFDX_URL} > env2.sfdx'
+        sh 'sfdx force:auth:sfdxurl:store -d -a ${SFDX_URL} -f env2.sfdx'
+        sh 'rm -rf env2.sfdx'
+      }
+    }
+    stage('Get Latest Package Version') {
+      steps {
+        sh './Get_Latest_Version_Package.sh ${SFDX_URL_DEVHUB}'
+      }
+    }
+    stage('Install Latest Package Version') {
+      steps {
+        sh '''
+          PACKAGE_ID=$(cat PID.txt)
+          sfdx force:package:install --package ${PACKAGE_ID} --targetusername=${SFDX_URL} --wait 80 --publishwait 80 --securitytype=AdminsOnly -k test1234
+        '''
+      }
+    }
+    stage('SF Setup') {
+      steps {
+        sh 'sfdx force:data:tree:import --targetusername "${SFDX_URL}" --plan sfdx-data/Account-plan.json || true'
+        sh 'sfdx force:user:permset:assign --targetusername "${SFDX_URL}" --permsetname HandsetBuy'
+      }
+    }
+    stage('Vlocity Deploy') {
+      steps {
+        sh 'vlocity -sfdx.username "$SFDX_URL" -job Deploy_Delta.yaml packDeploy --verbose true --simpleLogging true'
+      }
+    }
+    stage('Vlocity Setup') {
+      steps {
+        sh 'vlocity -sfdx.username "$SFDX_URL" --nojob runApex -apex apex/RunProductBatchJobs.cls --verbose true --simpleLogging true'
+      }
+    }
+  }  
+}

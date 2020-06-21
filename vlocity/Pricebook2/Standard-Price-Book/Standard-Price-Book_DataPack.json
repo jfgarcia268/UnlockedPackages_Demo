@@ -1,0 +1,14 @@
+{
+    "%vlocity_namespace%__IsDefault__c": false,
+    "%vlocity_namespace%__IsOpportunityDefault__c": false,
+    "%vlocity_namespace%__IsOrderDefault__c": false,
+    "%vlocity_namespace%__isQuoteDefault__c": false,
+    "Description": "This pricebook contains all products.",
+    "IsActive": true,
+    "IsArchived": false,
+    "IsStandard": true,
+    "Name": "Standard Price Book",
+    "VlocityDataPackType": "SObject",
+    "VlocityRecordSObjectType": "Pricebook2",
+    "VlocityRecordSourceKey": "Pricebook2/Standard Price Book"
+}
