@@ -24,12 +24,12 @@ pipeline {
 
         echo "RUN_APEX_TESTS: ${RUN_APEX_TESTS}"
         if [ ${RUN_APEX_TESTS} ]; then
-           COMMAND+=" --codecoverage " 
+           ${COMMAND}=" ${COMMAND} --codecoverage " 
         fi
 
         echo "SKIP_VALIDATION: ${SKIP_VALIDATION}"
         if [ ${SKIP_VALIDATION} ]; then
-           COMMAND+=" --skipvalidation " 
+           ${COMMAND}=" ${COMMAND} --skipvalidation " 
         fi
 
         echo "COMMAND: ${COMMAND}"
