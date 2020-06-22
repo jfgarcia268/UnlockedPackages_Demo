@@ -24,7 +24,7 @@ pipeline {
 
         echo "RUN_APEX_TESTS: ${RUN_APEX_TESTS}"
         if [ ${RUN_APEX_TESTS} = true ]; then
-           COMMAND="${COMMAND} -c " 
+           COMMAND="${COMMAND} --codecoverage " 
         fi
 
         echo "SKIP_VALIDATION: ${SKIP_VALIDATION}"
