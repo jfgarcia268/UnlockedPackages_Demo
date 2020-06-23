@@ -29,6 +29,7 @@ pipeline {
         sed '/.*─.*/d' org.info > tmpfile
         mv tmpfile org.info
         '''
+        archiveArtifacts artifacts: 'org.info', fingerprint: true
       }
     }
     stage('Deploy Manage Package from sfdx-project.json') {
@@ -65,11 +66,6 @@ pipeline {
         vlocity -sfdx.username ALIAS --nojob runApex -apex apex/RunProductBatchJobs.cls
         '''
       }
-    }
-  } 
-  post {
-      always {
-        archiveArtifacts artifacts: 'org.info', fingerprint: true
     }
   } 
 }
