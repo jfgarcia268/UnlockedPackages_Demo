@@ -17,7 +17,7 @@ pipeline {
 		    sh 'rm -rf env.sfdx'
       }
     }
-    stage('Create Scrach Org') {
+    stage('Create Scratch  Org') {
       steps {
         sh '''
         sfdx force:org:create --definitionfile config/project-scratch-def.json -a ALIAS --durationdays 29 --targetdevhubusername ${SFDX_URL_DEVHUB}
