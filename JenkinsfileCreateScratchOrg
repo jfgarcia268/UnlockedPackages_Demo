@@ -1,0 +1,73 @@
+#!/usr/bin/env groovy
+pipeline {
+  agent any
+  tools {
+    nodejs "UP-Node-12"
+  }
+  environment {
+    PATH = "/usr/bin:$PATH"
+  }
+  stages {
+    stage('DevHub Auth') {
+      steps {
+      	// creating SFDX Alias for auth
+		    sh 'echo ${SFDX_URL_DEVHUB}'
+		    sh 'echo ${SFDX_URL_DEVHUB} > env.sfdx'
+		    sh 'sfdx force:auth:sfdxurl:store -d -a ${SFDX_URL_DEVHUB} -f env.sfdx'
+		    sh 'rm -rf env.sfdx'
+      }
+    }
+    stage('Create Scrach Org') {
+      steps {
+        sh '''
+        sfdx force:org:create --definitionfile config/project-scratch-def.json -a ALIAS --durationdays 29 --json --targetdevhubusername ${SFDX_URL_DEVHUB}
+        sfdx force:user:password:generate --targetusername ALIAS --targetdevhubusername ${SFDX_URL_DEVHUB}
+        if [ -f org.info ]; then
+          rm org.info  
+        fi
+        sfdx force:org:display --verbose --targetusername ALIAS  --verbose >> org.info
+        '''
+      }
+    }
+    stage('Deploy Manage Package from sfdx-project.json') {
+      steps {
+        // Creates PID.txt file with latest package version from Line "versionNumber": "x.x.x.NEXT",  under sfdx-project.json file
+         sh ''' 
+          PACKAGE_ID=$(jq -r '.packageAliases."Vlocity CMT"' sfdx-project.json)
+          sfdx force:package:install -p ${PACKAGE_ID} --targetusername ALIAS -w 1000 --noprompt
+          '''
+      }
+    }
+    stage('Deploy and Setup Salesforce') {
+      steps {
+        sh '''
+          sfdx force:source:deploy --sourcepath force-app --targetusername ALIAS --verbose
+          sfdx force:data:tree:import --targetusername ALIAS --plan sfdx-data/Account-plan.json
+          sfdx force:user:permset:assign --targetusername ALIAS --permsetname HandsetBuy
+        '''
+      }
+    }
+    stage('Vlocity 1st Time Setup') {
+      steps {
+        sh ''''
+          vlocity -sfdx.username ALIAS --nojob packUpdateSettings 
+          vlocity -sfdx.username ALIAS --nojob installVlocityInitial --verbose
+          vlocity -sfdx.username ALIAS --nojob runApex -apex apex/cmt_InitializeOrg.cls
+        '''
+      }
+    }
+    stage('Vlocity Deploy') {
+      steps {
+        sh '''
+        vlocity -sfdx.username ALIAS -job Deploy_Delta.yaml packDeploy --verbose true --simpleLogging true
+        vlocity -sfdx.username ALIAS --nojob runApex -apex apex/RunProductBatchJobs.cls
+        '''
+      }
+    }
+  } 
+  post {
+      always {
+        archiveArtifacts artifacts: 'org.info', fingerprint: true
+    }
+  } 
+}
