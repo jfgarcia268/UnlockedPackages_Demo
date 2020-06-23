@@ -26,6 +26,8 @@ pipeline {
           rm org.info  
         fi
         sfdx force:org:display --verbose --targetusername ALIAS  --verbose >> org.info
+        sed '/.*─.*/d' org.info > tmpfile
+        mv tmpfile org.info
         '''
       }
     }
