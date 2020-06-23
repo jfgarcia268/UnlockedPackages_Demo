@@ -20,7 +20,7 @@ pipeline {
     stage('Create Scrach Org') {
       steps {
         sh '''
-        sfdx force:org:create --definitionfile config/project-scratch-def.json -a ALIAS --durationdays 29 --json --targetdevhubusername ${SFDX_URL_DEVHUB}
+        sfdx force:org:create --definitionfile config/project-scratch-def.json -a ALIAS --durationdays 29 --targetdevhubusername ${SFDX_URL_DEVHUB}
         sfdx force:user:password:generate --targetusername ALIAS --targetdevhubusername ${SFDX_URL_DEVHUB}
         if [ -f org.info ]; then
           rm org.info  
