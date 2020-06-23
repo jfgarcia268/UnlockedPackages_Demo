@@ -51,7 +51,7 @@ pipeline {
     }
     stage('Vlocity 1st Time Setup') {
       steps {
-        sh ''''
+        sh '''
           vlocity -sfdx.username ALIAS --nojob packUpdateSettings 
           vlocity -sfdx.username ALIAS --nojob installVlocityInitial --verbose
           vlocity -sfdx.username ALIAS --nojob runApex -apex apex/cmt_InitializeOrg.cls
