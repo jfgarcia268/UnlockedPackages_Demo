@@ -42,7 +42,6 @@ pipeline {
     }
     stage('Salesforce Setup') {
       steps {
-        sh 'sfdx force:data:tree:import --targetusername "${SFDX_URL_DEVHUB}" --plan sfdx-data/Account-plan.json || true'
         sh 'sfdx force:user:permset:assign --targetusername "${SFDX_URL_DEVHUB}" --permsetname HandsetBuy || true'
       }
     }
