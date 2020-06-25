@@ -32,7 +32,7 @@ pipeline {
       steps {
         sh '''
           PACKAGE_ID=$(cat PID.txt)
-          echo "y" | sfdx force:package:version:promote --package ${PACKAGE_ID} --targetdevhubusername ${SFDX_URL_DEVHUB}
+          sfdx force:package:version:promote --noprompt --package ${PACKAGE_ID} --targetdevhubusername ${SFDX_URL_DEVHUB}
           sfdx force:package:install --package ${PACKAGE_ID} --targetusername=${SFDX_URL_DEVHUB} --wait 1000 --publishwait 1000 --securitytype=AdminsOnly -k ${KEY}
           if [ -f rm PID.txt  ]; then
             rm rm PID.txt  
