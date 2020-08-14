@@ -33,7 +33,7 @@ pipeline {
           if [ -f rm PID.txt  ]; then
             rm rm PID.txt  
           fi
-          ./Get_Latest_Version_Package.sh ${SFDX_URL_DEVHUB}
+          ./Get_Latest_Version_Package.sh ${SFDX_URL_DEVHUB} ${PACKAGE_NAME}
           '''
       }
     }
